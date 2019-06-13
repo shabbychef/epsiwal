@@ -21,11 +21,8 @@
 # Author: Steven E. Pav
 # Comments: Steven E. Pav
 
-#' Inference on the Markowitz portfolio.
+#' Exact Post Selection Inference with Applications to the Lasso.
 #' 
-#' @section Markowitz Portfolio:
-#'
-#' foo.
 #'
 #' @section Legal Mumbo Jumbo:
 #'
@@ -36,18 +33,12 @@
 #'
 #' @template etc
 #'
-#' @references
-#'
-#' Brandt, Michael W. "Portfolio Choice Problems." Handbook of Financial
-#' Econometrics 1 (2009): 269--336. 
-#' \url{http://shr.receptidocs.ru/docs/5/4748/conv_1/file1.pdf#page=298}
-#'
-#' @import matrixcalc sandwich gtools
+#' @template ref-lee
 #'
 #' @name epsiwal
 #' @rdname epsiwal
 #' @docType package
-#' @title statistics concerning the Markowitz portfolio
+#' @title Exact Post Selection Inference with Applications to the Lasso.
 #' @keywords package
 #' @note
 #' 

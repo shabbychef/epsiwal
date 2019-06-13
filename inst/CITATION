@@ -3,7 +3,7 @@ citHeader("To cite the 'epsiwal' package in publications use:")
 
 year = sub('.*(2[[:digit:]]{3})-.*', '\\1', meta$Date, perl = TRUE)
 vers = paste('R package version', meta$Version)
-fix.title = gsub("Markowitz","{M}arkowitz",meta$Title)
+fix.title = gsub("Lasso","{L}asso",meta$Title)
 
 citEntry(
   entry = "manual",
