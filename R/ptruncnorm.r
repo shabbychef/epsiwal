@@ -31,12 +31,13 @@
 #'
 #' @param a  vector of the left truncation value(s).
 #' @param b  vector of the right truncation value(s).
-#' @inheritParams pnorm
+#' @inheritParams stats::pnorm
 #' @return The distribution function of the truncated normal.
 #'
 #' Invalid arguments will result in return value \code{NaN} with a warning.
 #' @note Input are recycled as possible.
 #' @template etc
+#' @importFrom stats pnorm
 #' @references
 #'
 #' Hattaway, James T. "Parameter estimation and hypothesis testing for the truncated normal distribution 

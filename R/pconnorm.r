@@ -50,14 +50,14 @@
 #' and covariance \eqn{\Sigma}.
 #' @param A  an \eqn{k \times n} matrix of constraints.
 #' @param b  a \eqn{k} vector of inequality limits.
-#' @param eta  an \eqn{n} vector of the test contrast, \code{\eta}.
-#' @param mu  an \eqn{n} vector of the population mean, \code{\mu}.
+#' @param eta  an \eqn{n} vector of the test contrast, \eqn{\eta}.
+#' @param mu  an \eqn{n} vector of the population mean, \eqn{\mu}.
 #' Not needed if \code{eta_mu} is given.
-#' @param Sigma  an \eqn{n \times n} matrix of the population covariance, \code{\Sigma}.
+#' @param Sigma  an \eqn{n \times n} matrix of the population covariance, \eqn{\Sigma}.
 #' Not needed if \code{Sigma_eta} is given.
 #' @param Sigma_eta  an \eqn{n} vector of \eqn{\Sigma \eta}.
 #' @param eta_mu   the scalar \eqn{\eta^{\top}\mu}.
-#' @inheritParams pnorm
+#' @inheritParams stats::pnorm
 #' @return The CDF.
 #' @note 
 #' An error will be thrown if we do not observe \eqn{A y \le b}{A y <= b}.

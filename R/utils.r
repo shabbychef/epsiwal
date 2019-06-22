@@ -45,6 +45,7 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
   Vfs <- Vfuncs(zzz,A,b,ccc)
   c(Vfs,list(etay=etay,etaSeta=etaSeta))
 }
+#' @importFrom stats uniroot
 # invert the ptn function to find y at a given pval.
 qtn <- function(p,A,b,eta,mu,Sigma=NULL,
 								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),

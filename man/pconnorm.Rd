@@ -19,17 +19,22 @@ and covariance \eqn{\Sigma}.}
 
 \item{b}{a \eqn{k} vector of inequality limits.}
 
-\item{eta}{an \eqn{n} vector of the test contrast, \code{\eta}.}
+\item{eta}{an \eqn{n} vector of the test contrast, \eqn{\eta}.}
 
-\item{mu}{an \eqn{n} vector of the population mean, \code{\mu}.
+\item{mu}{an \eqn{n} vector of the population mean, \eqn{\mu}.
 Not needed if \code{eta_mu} is given.}
 
-\item{Sigma}{an \eqn{n \times n} matrix of the population covariance, \code{\Sigma}.
+\item{Sigma}{an \eqn{n \times n} matrix of the population covariance, \eqn{\Sigma}.
 Not needed if \code{Sigma_eta} is given.}
 
 \item{Sigma_eta}{an \eqn{n} vector of \eqn{\Sigma \eta}.}
 
 \item{eta_mu}{the scalar \eqn{\eta^{\top}\mu}.}
+
+\item{lower.tail}{logical; if TRUE (default), probabilities are
+    \eqn{P[X \le x]} otherwise, \eqn{P[X > x]}.}
+
+\item{log.p}{logical; if TRUE, probabilities p are given as log(p).}
 }
 \value{
 The CDF.
