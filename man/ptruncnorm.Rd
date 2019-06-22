@@ -26,6 +26,11 @@ Input are recycled as possible.
 \examples{
 y <- ptruncnorm(seq(-5,5,length.out=101), a=-1, b=2)
 }
+\references{
+Hattaway, James T. "Parameter estimation and hypothesis testing for the truncated normal distribution 
+with applications to introductory statistics grades." BYU Masters Thesis (2010).
+\url{https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?referer=&httpsredir=1&article=3052&context=etd}
+}
 \author{
 Steven E. Pav \email{shabbychef@gmail.com}
 }
