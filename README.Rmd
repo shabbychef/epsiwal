@@ -11,8 +11,8 @@ opts_chunk$set(cache=TRUE,cache.path="cache/")
 
 #opts_chunk$set(fig.path="github_extra/figure/",dev=c("pdf","cairo_ps"))
 #opts_chunk$set(fig.path="github_extra/figure/",dev=c("png","pdf"))
-opts_chunk$set(fig.path="github_extra/figure/",dev=c("png"))
-opts_chunk$set(fig.width=5,fig.height=4,dpi=64)
+opts_chunk$set(fig.path="tools/figure/",dev=c("png"))
+opts_chunk$set(fig.width=7,fig.height=6,dpi=100,out.width='700px',out.height='600px')
 
 # doing this means that png files are made of figures;
 # the savings is small, and it looks like shit:
@@ -35,10 +35,13 @@ opts_chunk$set(tidy=TRUE,tidy.opts=list(width.cutoff=50,keep.blank.line=TRUE))
 
 [![Build Status](https://travis-ci.org/shabbychef/epsiwal.png)](https://travis-ci.org/shabbychef/epsiwal)
 [![codecov.io](http://codecov.io/github/shabbychef/epsiwal/coverage.svg?branch=master)](http://codecov.io/github/shabbychef/epsiwal?branch=master)
-[![CRAN](http://www.r-pkg.org/badges/version/epsiwal)](http://cran.rstudio.com/package=epsiwal) 
-[![Downloads](http://cranlogs.r-pkg.org/badges/epsiwal?color=brightgreen)](http://www.r-pkg.org/pkg/epsiwal)
+[![CRAN](http://www.r-pkg.org/badges/version/epsiwal)](https://cran.r-project.org/package=epsiwal)
+[![Downloads](http://cranlogs.r-pkg.org/badges/epsiwal?color=green)](http://www.r-pkg.org/pkg/epsiwal)
+[![Total](http://cranlogs.r-pkg.org/badges/grand-total/epsiwal?color=green)](http://www.r-pkg.org/pkg/epsiwal)
 
-epsiwal.
+Implements the conditional inference on normal variates described in 
+Lee, Sun, Sun and Taylor, "Exact Post Selection Inference, with Application to the Lasso."
+
 
 -- Steven E. Pav, shabbychef@gmail.com
 
@@ -49,6 +52,9 @@ found on [github](https://www.github.com/shabbychef/epsiwal "epsiwal")
 via devtools, or installed via [drat](https://github.com/eddelbuettel/drat "drat"):
 
 ```{r install,eval=FALSE,echo=TRUE}
+# CRAN
+install.packages(c('epsiwal'))
+# devtools
 if (require(devtools)) {
 	# latest greatest
 	install_github('shabbychef/epsiwal')
@@ -65,3 +71,4 @@ if (require(drat)) {
 ```{r tryit,eval=FALSE,echo=TRUE}
 requre(epsiwal)
 ```
+
