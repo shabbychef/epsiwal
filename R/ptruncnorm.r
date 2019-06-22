@@ -32,7 +32,6 @@
 #' @param a  vector of the left truncation value(s).
 #' @param b  vector of the right truncation value(s).
 #' @inheritParams pnorm
-#' @template param-ope
 #' @return The distribution function of the truncated normal.
 #'
 #' Invalid arguments will result in return value \code{NaN} with a warning.

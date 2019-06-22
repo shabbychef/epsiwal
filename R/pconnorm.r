@@ -58,7 +58,6 @@
 #' @param Sigma_eta  an \eqn{n} vector of \eqn{\Sigma \eta}.
 #' @param eta_mu   the scalar \eqn{\eta^{\top}\mu}.
 #' @inheritParams pnorm
-#' @template param-ope
 #' @return The CDF.
 #' @note 
 #' An error will be thrown if we do not observe \eqn{A y \le b}{A y <= b}.
