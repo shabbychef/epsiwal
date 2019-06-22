@@ -19,8 +19,8 @@ Description: Implements the conditional estimation procedure of
   a normal random vector subject to linear constraints.
 Depends: 
     R (>= 3.0.2)
-Imports:
-    truncnorm
+dnl Imports: 
+dnl truncnorm
 Suggests: 
     testthat, 
     knitr
