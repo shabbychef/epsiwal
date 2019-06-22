@@ -47,15 +47,17 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
 }
 # Lee et. al eqn (5.9)
 ptn <- function(y,A,b,eta,mu,Sigma=NULL,
-								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu)) {
+								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
+								lower.tail=TRUE) {
   stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
 	# ptrunc is Lee et. al eqn (5.8)
-  ptruncnorm(q=stp$etay,a=stp$Vminus,b=stp$Vplus,mean=eta_mu,sd=sqrt(stp$etaSeta))
+  ptruncnorm(q=stp$etay,a=stp$Vminus,b=stp$Vplus,mean=eta_mu,sd=sqrt(stp$etaSeta),lower.tail=lower.tail)
 }
 # invert the ptn function to find y at a given pval.
 qtn <- function(p,A,b,eta,mu,Sigma=NULL,
 								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
-								intvl=c(-10,10)) {
+								intvl=c(-10,10),lower.tail=TRUE) {
+	if (! lower.tail) { p <- 1 - p }
 
 	f <- function(y) {
     # rather than this, which is numerically instable
@@ -78,7 +80,7 @@ qtn <- function(p,A,b,eta,mu,Sigma=NULL,
 }
 # invert the ptn function to find eta'mu at a given pval.
 citn <- function(p,y,A,b,eta,Sigma=NULL,
-								Sigma_eta=Sigma %*% eta) {
+								 Sigma_eta=Sigma %*% eta) {
   stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
   # you want this, but there are numerical issues: 
   #f <- function(etamu) { F_fnc(x=etay,a=Vfs$Vminus,b=Vfs$Vplus,mu=etamu,sigmasq=etaSeta) - p } 
