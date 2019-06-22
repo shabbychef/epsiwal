@@ -46,6 +46,7 @@
 #'
 #' @examples 
 #' y <- ptruncnorm(seq(-5,5,length.out=101), a=-1, b=2)
+#' @export 
 ptruncnorm <- function(q, mean=0, sd=1, a=-Inf, b=Inf, lower.tail=TRUE, log.p=FALSE) {
 	phiq <- pnorm(pmin(pmax(q,a),b),mean=mean,sd=sd)
 	phia <- pnorm(a,mean=mean,sd=sd)
