@@ -27,11 +27,23 @@
 set.char.seed <- function(str) { set.seed(as.integer(charToRaw(str))) }
 #UNFOLD
 
-context("ptruncnorm")
+context("pconnorm")
 test_that("runs without error",{#FOLDUP
 	set.char.seed("d106bf01-7ad5-49b2-8715-bb8148a0e294")
 
-	expect_error(ptruncnorm(1,a=0,b=2),NA)
+	set.seed(1234)
+	n <- 10
+	y <- rnorm(n)
+	A <- matrix(rnorm(n*(n-3)),ncol=n)
+	b <- A%*%y + runif(nrow(A))
+	Sigma <- diag(runif(n))
+	mu <- rnorm(n)
+	eta <- rnorm(n)
+
+	expect_error(pval <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma=Sigma),NA)
+# integration tests:
+	expect_error(cival <- ci_connorm(y=y,A=A,b=b,eta=eta,Sigma=Sigma,p=pval),NA)
+	#stopifnot(abs(cival - sum(eta*mu)) < 1e-4)
 })#UNFOLD
 
 #for vim modeline: (do not edit)
