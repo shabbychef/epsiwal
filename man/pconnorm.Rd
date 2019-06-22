@@ -2,9 +2,6 @@
 % Please edit documentation in R/pconnorm.r
 \name{pconnorm}
 \alias{pconnorm}
-\alias{psr}
-\alias{qsr}
-\alias{rsr}
 \title{pconnorm .}
 \usage{
 pconnorm(y, A, b, eta, mu, Sigma = NULL, Sigma_eta = Sigma \%*\% eta,
@@ -67,7 +64,7 @@ with application to the Lasso." Ann. Statist. 44, no. 3 (2016): 907-927.
 doi:10.1214/15-AOS1371. \url{https://arxiv.org/abs/1311.6238}
 }
 \seealso{
-the confidence interval function, \code{ciconnorm}, \code{ptruncnorm}.
+the confidence interval function, \code{ci_connorm}.
 }
 \author{
 Steven E. Pav \email{shabbychef@gmail.com}

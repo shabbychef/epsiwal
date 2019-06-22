@@ -61,8 +61,7 @@
 #' @return The CDF.
 #' @note 
 #' An error will be thrown if we do not observe \eqn{A y \le b}{A y <= b}.
-#' @aliases psr qsr rsr
-#' @seealso the confidence interval function, \code{ciconnorm}, \code{ptruncnorm}.
+#' @seealso the confidence interval function, \code{ci_connorm}.
 #' @template etc
 #' @template ref-lee
 #' @export
