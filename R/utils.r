@@ -45,14 +45,6 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
   Vfs <- Vfuncs(zzz,A,b,ccc)
   c(Vfs,list(etay=etay,etaSeta=etaSeta))
 }
-# Lee et. al eqn (5.9)
-ptn <- function(y,A,b,eta,mu,Sigma=NULL,
-								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
-								lower.tail=TRUE) {
-  stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-	# ptrunc is Lee et. al eqn (5.8)
-  ptruncnorm(q=stp$etay,a=stp$Vminus,b=stp$Vplus,mean=eta_mu,sd=sqrt(stp$etaSeta),lower.tail=lower.tail)
-}
 # invert the ptn function to find y at a given pval.
 qtn <- function(p,A,b,eta,mu,Sigma=NULL,
 								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
