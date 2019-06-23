@@ -5,7 +5,7 @@ Authors@R: c(person(c("Steven", "E."), "Pav",
     email="shabbychef@gmail.com",
     comment = c(ORCID = "0000-0002-4197-6195")))
 Version: 0.0.0.0001
-Date: 2019-06-21
+Date: 2019-06-22
 License: LGPL-3
 Title: Exact Post Selection Inference with Applications to the Lasso.
 BugReports: https://github.com/shabbychef/epsiwal/issues
@@ -21,8 +21,8 @@ Suggests:
 URL: https://github.com/shabbychef/epsiwal
 VignetteBuilder: knitr
 Collate:
+    'ci_connorm.r'
     'epsiwal.r'
     'pconnorm.r'
     'ptruncnorm.r'
     'utils.r'
-RoxygenNote: 6.1.1
