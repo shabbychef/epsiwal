@@ -7,7 +7,7 @@ Authors@R: c(person(c("Steven", "E."), "Pav",
 Version: 0.1.0
 Date: 2019-06-23
 License: LGPL-3
-Title: Exact Post Selection Inference with Applications to the Lasso.
+Title: Exact Post Selection Inference with Applications to the Lasso
 BugReports: https://github.com/shabbychef/epsiwal/issues
 Description: Implements the conditional estimation procedure of
   Lee, Sun, Sun and Taylor, <doi:10.1214/15-AOS1371>.
@@ -26,4 +26,3 @@ Collate:
     'pconnorm.r'
     'ptruncnorm.r'
     'utils.r'
-RoxygenNote: 6.1.1

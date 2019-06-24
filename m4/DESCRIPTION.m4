@@ -11,7 +11,7 @@ Authors@R: c(person(c("Steven", "E."), "Pav",
 Version: VERSION()
 Date: DATE()
 License: LGPL-3
-Title: Exact Post Selection Inference with Applications to the Lasso.
+Title: Exact Post Selection Inference with Applications to the Lasso
 BugReports: https://github.com/shabbychef/PKG_NAME()/issues
 Description: Implements the conditional estimation procedure of
   Lee, Sun, Sun and Taylor, <doi:10.1214/15-AOS1371>.
