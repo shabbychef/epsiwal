@@ -16,10 +16,8 @@ Description: Implements the conditional estimation procedure of
 Depends: 
     R (>= 3.0.2)
 Suggests: 
-    testthat, 
-    knitr
+    testthat
 URL: https://github.com/shabbychef/epsiwal
-VignetteBuilder: knitr
 Collate:
     'ci_connorm.r'
     'epsiwal.r'
