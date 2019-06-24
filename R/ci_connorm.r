@@ -53,6 +53,7 @@
 #' @seealso the CDF function, \code{pconnorm}.
 #' @template etc
 #' @template ref-lee
+#' @importFrom stats uniroot
 #' @examples
 #' set.seed(1234)
 #' n <- 10
@@ -88,28 +89,37 @@ ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
 	resu <- rep(NA,length(sp$x))
 
 	for (lll in (1:length(sp$x))) {
-		trypnts <- seq(rang[1],rang[2],length.out=101)
-		ys <- sapply(trypnts,f,ap=sp$x[lll])
-		dsy <- diff(sign(ys))
-		intvl <- rang
-		if (any(dsy < 0)) {
-			widx <- which(dsy < 0)
-			intvl <- trypnts[widx + c(0,1)]
+		nextp <- sp$x[lll]
+		if (nextp==0) {
+			rootval <- Inf
+		} else if (nextp==1) {
+			rootval <- -Inf
 		} else {
-			delr <- rang[2] - rang[1]
-			rang[1] <- rang[1] - 2 * delr
 			trypnts <- seq(rang[1],rang[2],length.out=101)
-			ys <- sapply(trypnts,f,ap=sp$x[lll])
+			ys <- sapply(trypnts,f,ap=nextp)
 			dsy <- diff(sign(ys))
+			intvl <- rang
 			if (any(dsy < 0)) {
 				widx <- which(dsy < 0)
 				intvl <- trypnts[widx + c(0,1)]
+			} else {
+				delr <- rang[2] - rang[1]
+				rang[1] <- rang[1] - 2 * delr
+				trypnts <- seq(rang[1],rang[2],length.out=101)
+				ys <- sapply(trypnts,f,ap=nextp)
+				dsy <- diff(sign(ys))
+				if (any(dsy < 0)) {
+					widx <- which(dsy < 0)
+					intvl <- trypnts[widx + c(0,1)]
+				}
 			}
+			rootval <- uniroot(f=f,interval=intvl,extendInt='yes',ap=nextp)$root
 		}
-		rootval <- uniroot(f=f,interval=intvl,extendInt='yes',ap=sp$x[lll])$root
 		resu[sp$ix[lll]] <- rootval
 		# fix rang
-		rang[1] <- rootval
+		if (!is.infinite(rootval)) { 
+			rang[1] <- rootval
+		}
 	}
 	resu
 }
