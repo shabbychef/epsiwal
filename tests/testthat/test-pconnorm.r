@@ -40,10 +40,31 @@ test_that("runs without error",{#FOLDUP
 	mu <- rnorm(n)
 	eta <- rnorm(n)
 
+	# can we use it?
 	expect_error(pval <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma=Sigma),NA)
-# integration tests:
-	expect_error(cival <- ci_connorm(y=y,A=A,b=b,eta=eta,Sigma=Sigma,p=pval),NA)
-	#stopifnot(abs(cival - sum(eta*mu)) < 1e-4)
+
+	# lower.tail
+	expect_error(mpval <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma=Sigma,lower.tail=FALSE),NA)
+	expect_equal(mpval,1-pval,tolerance=1e-5)
+
+	# log p
+	expect_error(lval <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma=Sigma,log.p=TRUE),NA)
+	expect_equal(lval,log(pval),tolerance=1e-5)
+
+	# premultiply
+	expect_error(pval1 <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma=Sigma),NA)
+	expect_error(pval2 <- pconnorm(y=y,A=A,b=b,eta=eta,mu=mu,Sigma_eta=Sigma %*% eta),NA)
+	expect_error(pval3 <- pconnorm(y=y,A=A,b=b,eta=eta,Sigma=Sigma,eta_mu=as.numeric(t(eta)%*%mu)),NA)
+	expect_error(pval4 <- pconnorm(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta)%*%mu)),NA)
+	expect_equal(pval1,pval2,tolerance=1e-5)
+	expect_equal(pval1,pval3,tolerance=1e-5)
+	expect_equal(pval1,pval4,tolerance=1e-5)
+
+	# pval is decreasing in eta mu 
+	aleta <- y
+	expect_error(pval_lo <- pconnorm(y=y,A=A,b=b,eta=aleta,Sigma_eta=Sigma%*%aleta,eta_mu=as.numeric(t(aleta)%*%mu)),NA)
+	expect_error(pval_hi <- pconnorm(y=y,A=A,b=b,eta=aleta,Sigma_eta=Sigma%*%aleta,eta_mu=as.numeric(t(aleta)%*%mu)-1),NA)
+	expect_lt(pval_lo,pval_hi)
 })#UNFOLD
 
 #for vim modeline: (do not edit)
