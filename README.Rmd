@@ -114,12 +114,12 @@ cat('Empirical coverage of the',type_I,'confidence bound is around',mean(civals 
 
 ## See also
 
-	* The original paper, by Lee, J. D., Sun, D. L., Sun, Y. and Taylor, J. E. 
-		[Exact post-selection inference, with application to the Lasso](https://arxiv.org/abs/1311.6238).
-	* The [`PSAT` package](https://github.com/ammeir2/PSAT), which supports similar
-		procedures, but is not yet on CRAN.
-	* The [`SelectiveInference` package](https://cran.r-project.org/web/packages/selectiveInference/index.html),
-		which implements similar inferential procedures under quadratic
-		constraints, as detailed in Tibshirani, R. J., Taylor, J., Lockhart, R. and Tibshirani, R. 
-		[Exact Post-Selection Inference for Sequential Regression Procedures](https://arxiv.org/abs/1401.3889).
+* The original paper, by Lee, J. D., Sun, D. L., Sun, Y. and Taylor, J. E. 
+	[Exact post-selection inference, with application to the Lasso](https://arxiv.org/abs/1311.6238).
+* The [`PSAT` package](https://github.com/ammeir2/PSAT), which supports similar
+	procedures, but is not yet on CRAN.
+* The [`SelectiveInference` package](https://cran.r-project.org/web/packages/selectiveInference/index.html),
+	which implements similar inferential procedures under quadratic
+	constraints, as detailed in Tibshirani, R. J., Taylor, J., Lockhart, R. and Tibshirani, R. 
+	[Exact Post-Selection Inference for Sequential Regression Procedures](https://arxiv.org/abs/1401.3889).
 
