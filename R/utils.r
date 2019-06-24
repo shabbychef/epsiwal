@@ -46,64 +46,31 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
   c(Vfs,list(etay=etay,etaSeta=etaSeta))
 }
 #' @importFrom stats uniroot
-# invert the ptn function to find y at a given pval.
-qtn <- function(p,A,b,eta,mu,Sigma=NULL,
-								Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
-								intvl=c(-10,10),lower.tail=TRUE) {
-	if (! lower.tail) { p <- 1 - p }
+## invert the ptn function to find y at a given pval.
+#qtn <- function(p,A,b,eta,mu,Sigma=NULL,
+								#Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
+								#intvl=c(-10,10),lower.tail=TRUE) {
+	#if (! lower.tail) { p <- 1 - p }
 
-	f <- function(y) {
-    # rather than this, which is numerically instable
-    #ptn(y,A,b,eta=eta,mu=mu,Sigma=Sigma,etamu=etamu) - p
-    # this
-    stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-    phis <- pnorm(c(stp$etay,stp$Vminus,stp$Vplus),mean=eta_mu,sd=sqrt(stp$etaSeta))
-    #(phis[1] - phis[2]) - p * (phis[3] - phis[2])
-    phis[1] + (p-1) * phis[2] - p * phis[3]
-  }
-	# oh, yeah this is a hack
-	trypnts <- seq(from=min(intvl),to=max(intvl),length.out=101)
-	ys <- sapply(trypnts,f)
-	dsy <- diff(sign(ys))
-	if (any(dsy < 0)) {
-		widx <- which(dsy < 0)
-		intvl <- trypnts[widx + c(0,1)]
-	}
-  uniroot(f=f,interval=intvl,extendInt='yes')$root
-}
-# invert the ptn function to find eta'mu at a given pval.
-citn <- function(p,y,A,b,eta,Sigma=NULL,
-								 Sigma_eta=Sigma %*% eta) {
-  stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-  # you want this, but there are numerical issues: 
-  #f <- function(etamu) { F_fnc(x=etay,a=Vfs$Vminus,b=Vfs$Vplus,mu=etamu,sigmasq=etaSeta) - p } 
-  sigma <- sqrt(stp$etaSeta)
-  f <- function(etamu) { 
-    phis <- pnorm((c(stp$etay,stp$Vminus,stp$Vplus)-etamu)/sigma)
-    #(phis[1] - phis[2]) - p * (phis[3] - phis[2])
-    phis[1] + (p-1) * phis[2] - p * phis[3]
-  }
-  # this fails sometimes, so find a better interval
-  intvl <- c(-1,1)  # a hack.
-  # this is very unfortunate
-    trypnts <- seq(from=min(y),to=max(y),length.out=31)
-    ys <- sapply(trypnts,f)
-    dsy <- diff(sign(ys))
-    if (any(dsy < 0)) {
-      widx <- which(dsy < 0)
-      intvl <- trypnts[widx + c(0,1)]
-    } else {
-      maby <- 2 * (0.1 + max(abs(y)))
-      trypnts <- seq(from=-maby,to=maby,length.out=31)
-      ys <- sapply(trypnts,f)
-      dsy <- diff(sign(ys))
-      if (any(dsy < 0)) {
-        widx <- which(dsy < 0)
-        intvl <- trypnts[widx + c(0,1)]
-      }
-    }
-  uniroot(f=f,interval=intvl,extendInt='yes')$root
-}
+	#f <- function(y) {
+    ## rather than this, which is numerically instable
+    ##ptn(y,A,b,eta=eta,mu=mu,Sigma=Sigma,etamu=etamu) - p
+    ## this
+    #stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
+    #phis <- pnorm(c(stp$etay,stp$Vminus,stp$Vplus),mean=eta_mu,sd=sqrt(stp$etaSeta))
+    ##(phis[1] - phis[2]) - p * (phis[3] - phis[2])
+    #phis[1] + (p-1) * phis[2] - p * phis[3]
+  #}
+	## oh, yeah this is a hack
+	#trypnts <- seq(from=min(intvl),to=max(intvl),length.out=101)
+	#ys <- sapply(trypnts,f)
+	#dsy <- diff(sign(ys))
+	#if (any(dsy < 0)) {
+		#widx <- which(dsy < 0)
+		#intvl <- trypnts[widx + c(0,1)]
+	#}
+  #uniroot(f=f,interval=intvl,extendInt='yes')$root
+#}
 
 #for vim modeline: (do not edit)
 # vim:fdm=marker:fmr=FOLDUP,UNFOLD:cms=#%s:syn=r:ft=r
