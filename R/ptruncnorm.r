@@ -20,7 +20,7 @@
 #
 # Created: 2019.06.12
 # Copyright: Steven E. Pav, 2019
-# Author: Steven E. Pav <steven@gilgamath.com>
+# Author: Steven E. Pav <shabbychef@gmail.com>
 # Comments: Steven E. Pav
 
 #' @title ptruncnorm .
