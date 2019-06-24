@@ -23,6 +23,16 @@
 
 #' Exact Post Selection Inference with Applications to the Lasso.
 #' 
+#' This simple package supports the simple procedure outlined in 
+#' Lee \emph{et al.} where one observes a normal random variable,
+#' then performs inference conditional on some linear inequalities.
+#'
+#' Suppose \eqn{y} is multivariate normal with mean \eqn{\mu}
+#' and covariance \eqn{\Sigma}. Conditional on \eqn{Ay \le b}{Ay <= b},
+#' one can perform inference on \eqn{\eta^{\top}\mu}{eta'mu} by
+#' transforming \eqn{y} to a truncated normal. 
+#' Similarly one can invert this procedure and find confidence intervals on
+#' \eqn{\eta^{\top}\mu}{eta'mu}.
 #'
 #' @section Legal Mumbo Jumbo:
 #'
@@ -34,6 +44,7 @@
 #' @template etc
 #'
 #' @template ref-lee
+#' @template ref-pav
 #'
 #' @name epsiwal
 #' @rdname epsiwal

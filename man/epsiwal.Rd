@@ -8,6 +8,18 @@
 \description{
 Exact Post Selection Inference with Applications to the Lasso.
 }
+\details{
+This simple package supports the simple procedure outlined in 
+Lee \emph{et al.} where one observes a normal random variable,
+then performs inference conditional on some linear inequalities.
+
+Suppose \eqn{y} is multivariate normal with mean \eqn{\mu}
+and covariance \eqn{\Sigma}. Conditional on \eqn{Ay \le b}{Ay <= b},
+one can perform inference on \eqn{\eta^{\top}\mu}{eta'mu} by
+transforming \eqn{y} to a truncated normal. 
+Similarly one can invert this procedure and find confidence intervals on
+\eqn{\eta^{\top}\mu}{eta'mu}.
+}
 \note{
 This package is maintained as a hobby.
 }
@@ -24,6 +36,9 @@ GNU Lesser General Public License for more details.
 Lee, J. D., Sun, D. L., Sun, Y. and Taylor, J. E. "Exact post-selection inference, 
 with application to the Lasso." Ann. Statist. 44, no. 3 (2016): 907-927.
 doi:10.1214/15-AOS1371. \url{https://arxiv.org/abs/1311.6238}
+
+Pav, S. E. "Conditional inference on the asset with maximum Sharpe ratio."
+Arxiv e-print (2019). \url{http://arxiv.org/abs/1906.00573}
 }
 \author{
 Steven E. Pav \email{shabbychef@gmail.com}
