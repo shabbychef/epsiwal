@@ -65,7 +65,7 @@
 #' @template etc
 #' @template ref-lee
 #' @export
-pconnorm <- function(y,A,b,eta,mu,Sigma=NULL,
+pconnorm <- function(y,A,b,eta,mu=NULL,Sigma=NULL,
 										 Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
 										 lower.tail=TRUE,log.p=FALSE) {
 	# this is just Lee et. al eqn (5.9)

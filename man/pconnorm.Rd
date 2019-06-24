@@ -4,8 +4,8 @@
 \alias{pconnorm}
 \title{pconnorm .}
 \usage{
-pconnorm(y, A, b, eta, mu, Sigma = NULL, Sigma_eta = Sigma \%*\% eta,
-  eta_mu = as.numeric(t(eta) \%*\% mu), lower.tail = TRUE,
+pconnorm(y, A, b, eta, mu = NULL, Sigma = NULL, Sigma_eta = Sigma
+  \%*\% eta, eta_mu = as.numeric(t(eta) \%*\% mu), lower.tail = TRUE,
   log.p = FALSE)
 }
 \arguments{
