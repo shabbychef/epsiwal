@@ -2,7 +2,7 @@
 
 # epsiwal
 
-[![Build Status](https://travis-ci.org/shabbychef/epsiwal.png)](https://travis-ci.org/shabbychef/epsiwal)
+[![Build Status](https://github.com/shabbychef/epsiwal/workflows/R-CMD-check/badge.svg)](https://github.com/shabbychef/epsiwal/actions)
 [![codecov.io](http://codecov.io/github/shabbychef/epsiwal/coverage.svg?branch=master)](http://codecov.io/github/shabbychef/epsiwal?branch=master)
 [![CRAN](http://www.r-pkg.org/badges/version/epsiwal)](https://cran.r-project.org/package=epsiwal)
 [![Downloads](http://cranlogs.r-pkg.org/badges/epsiwal?color=green)](http://www.r-pkg.org/pkg/epsiwal)
