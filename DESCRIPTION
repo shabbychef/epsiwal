@@ -23,3 +23,4 @@ Collate:
     'pconnorm.r'
     'ptruncnorm.r'
     'utils.r'
+RoxygenNote: 7.1.1

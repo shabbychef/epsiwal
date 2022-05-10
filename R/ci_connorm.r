@@ -100,7 +100,7 @@ ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
 			dsy <- diff(sign(ys))
 			intvl <- rang
 			if (any(dsy < 0)) {
-				widx <- which(dsy < 0)
+				widx <- min(which(dsy < 0))
 				intvl <- trypnts[widx + c(0,1)]
 			} else {
 				delr <- rang[2] - rang[1]
@@ -109,7 +109,7 @@ ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
 				ys <- sapply(trypnts,f,ap=nextp)
 				dsy <- diff(sign(ys))
 				if (any(dsy < 0)) {
-					widx <- which(dsy < 0)
+					widx <- min(which(dsy < 0))
 					intvl <- trypnts[widx + c(0,1)]
 				}
 			}

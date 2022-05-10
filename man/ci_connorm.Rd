@@ -4,8 +4,16 @@
 \alias{ci_connorm}
 \title{ci_connorm .}
 \usage{
-ci_connorm(y, A, b, eta, Sigma = NULL, p = c(level/2, 1 - (level/2)),
-  level = 0.05, Sigma_eta = Sigma \%*\% eta)
+ci_connorm(
+  y,
+  A,
+  b,
+  eta,
+  Sigma = NULL,
+  p = c(level/2, 1 - (level/2)),
+  level = 0.05,
+  Sigma_eta = Sigma \%*\% eta
+)
 }
 \arguments{
 \item{y}{an \eqn{n} vector, assumed multivariate normal with mean \eqn{\mu}

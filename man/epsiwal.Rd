@@ -3,7 +3,6 @@
 \docType{package}
 \name{epsiwal}
 \alias{epsiwal}
-\alias{epsiwal-package}
 \title{Exact Post Selection Inference with Applications to the Lasso.}
 \description{
 Exact Post Selection Inference with Applications to the Lasso.

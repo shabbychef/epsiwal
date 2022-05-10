@@ -4,8 +4,15 @@
 \alias{ptruncnorm}
 \title{ptruncnorm .}
 \usage{
-ptruncnorm(q, mean = 0, sd = 1, a = -Inf, b = Inf,
-  lower.tail = TRUE, log.p = FALSE)
+ptruncnorm(
+  q,
+  mean = 0,
+  sd = 1,
+  a = -Inf,
+  b = Inf,
+  lower.tail = TRUE,
+  log.p = FALSE
+)
 }
 \arguments{
 \item{q}{vector of quantiles.}

@@ -4,9 +4,18 @@
 \alias{pconnorm}
 \title{pconnorm .}
 \usage{
-pconnorm(y, A, b, eta, mu = NULL, Sigma = NULL, Sigma_eta = Sigma
-  \%*\% eta, eta_mu = as.numeric(t(eta) \%*\% mu), lower.tail = TRUE,
-  log.p = FALSE)
+pconnorm(
+  y,
+  A,
+  b,
+  eta,
+  mu = NULL,
+  Sigma = NULL,
+  Sigma_eta = Sigma \%*\% eta,
+  eta_mu = as.numeric(t(eta) \%*\% mu),
+  lower.tail = TRUE,
+  log.p = FALSE
+)
 }
 \arguments{
 \item{y}{an \eqn{n} vector, assumed multivariate normal with mean \eqn{\mu}
