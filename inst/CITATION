@@ -13,7 +13,7 @@ bibentry(
   year = pkg_year,
   note = pkg_vers,
   url = meta$URL,
-  textVersion = paste0("Steven E. Pav (", pkg_year, "). ", meta$Package, ": ", meta$Title, ". ", pkg_vers, ".")
+  textVersion = paste0("Steven E. Pav (", pkg_year, "). ", meta$Package, ": ", fix_title, ". ", pkg_vers, ".")
 )
 
 
