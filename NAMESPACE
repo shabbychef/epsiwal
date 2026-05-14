@@ -3,5 +3,6 @@
 export(ci_connorm)
 export(pconnorm)
 export(ptruncnorm)
+export(truncnorm_mle)
 importFrom(stats,pnorm)
 importFrom(stats,uniroot)

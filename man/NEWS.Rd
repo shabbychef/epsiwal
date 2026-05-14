@@ -9,6 +9,13 @@ News for package \sQuote{epsiwal}
 \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 \newcommand{\epsiwal}{\CRANpkg{epsiwal}}
 }
+\section{\epsiwal{} Initial Version 0.2.0 (2026-06-??) }{
+
+\itemize{
+\item adding estimation procedure from Reid, Taylor, Tibshirani.
+}
+}
+
 \section{\epsiwal{} Initial Version 0.1.0 (2019-06-28) }{
 
 \itemize{
