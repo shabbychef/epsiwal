@@ -70,58 +70,58 @@
 #'
 #' @export
 ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
-											 level=0.05,Sigma_eta=Sigma %*% eta) {
+                       level=0.05,Sigma_eta=Sigma %*% eta) {
 
-	stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-	stp$sigma <- sqrt(stp$etaSeta)
-	# as a hack, a sane range of eta'mu is eta'y +/- 5 sigma
-	rang <- stp$etay + 5 * c(-1,1) * stp$sigma
+  stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
+  stp$sigma <- sqrt(stp$etaSeta)
+  # as a hack, a sane range of eta'mu is eta'y +/- 5 sigma
+  rang <- stp$etay + 5 * c(-1,1) * stp$sigma
 
-	# you want this, but there are numerical issues: 
-	#f <- function(etamu,ap) { F_fnc(x=etay,a=Vfs$Vminus,b=Vfs$Vplus,mu=etamu,sigmasq=etaSeta) - ap } 
-	f <- function(etamu,ap) { 
-		phis <- pnorm(c(stp$etay,stp$Vminus,stp$Vplus),mean=etamu,sd=stp$sigma)
-		#(phis[1] - phis[2]) - p * (phis[3] - phis[2])
-		phis[1] + (ap-1) * phis[2] - ap * phis[3]
-	}
+  # you want this, but there are numerical issues: 
+  #f <- function(etamu,ap) { F_fnc(x=etay,a=Vfs$Vminus,b=Vfs$Vplus,mu=etamu,sigmasq=etaSeta) - ap } 
+  f <- function(etamu,ap) { 
+    phis <- pnorm(c(stp$etay,stp$Vminus,stp$Vplus),mean=etamu,sd=stp$sigma)
+    #(phis[1] - phis[2]) - p * (phis[3] - phis[2])
+    phis[1] + (ap-1) * phis[2] - ap * phis[3]
+  }
 
-	sp <- sort.int(p,index.return=TRUE)
-	resu <- rep(NA,length(sp$x))
+  sp <- sort.int(p,index.return=TRUE)
+  resu <- rep(NA,length(sp$x))
 
-	for (lll in (1:length(sp$x))) {
-		nextp <- sp$x[lll]
-		if (nextp==0) {
-			rootval <- Inf
-		} else if (nextp==1) {
-			rootval <- -Inf
-		} else {
-			trypnts <- seq(rang[1],rang[2],length.out=101)
-			ys <- sapply(trypnts,f,ap=nextp)
-			dsy <- diff(sign(ys))
-			intvl <- rang
-			if (any(dsy < 0)) {
-				widx <- which(dsy < 0)
-				intvl <- trypnts[widx + c(0,1)]
-			} else {
-				delr <- rang[2] - rang[1]
-				rang[1] <- rang[1] - 2 * delr
-				trypnts <- seq(rang[1],rang[2],length.out=101)
-				ys <- sapply(trypnts,f,ap=nextp)
-				dsy <- diff(sign(ys))
-				if (any(dsy < 0)) {
-					widx <- which(dsy < 0)
-					intvl <- trypnts[widx + c(0,1)]
-				}
-			}
-			rootval <- uniroot(f=f,interval=intvl,extendInt='yes',ap=nextp)$root
-		}
-		resu[sp$ix[lll]] <- rootval
-		# fix rang
-		if (!is.infinite(rootval)) { 
-			rang[1] <- rootval
-		}
-	}
-	resu
+  for (lll in (1:length(sp$x))) {
+    nextp <- sp$x[lll]
+    if (nextp==0) {
+      rootval <- Inf
+    } else if (nextp==1) {
+      rootval <- -Inf
+    } else {
+      trypnts <- seq(rang[1],rang[2],length.out=101)
+      ys <- sapply(trypnts,f,ap=nextp)
+      dsy <- diff(sign(ys))
+      intvl <- rang
+      if (any(dsy < 0)) {
+        widx <- which(dsy < 0)
+        intvl <- trypnts[widx + c(0,1)]
+      } else {
+        delr <- rang[2] - rang[1]
+        rang[1] <- rang[1] - 2 * delr
+        trypnts <- seq(rang[1],rang[2],length.out=101)
+        ys <- sapply(trypnts,f,ap=nextp)
+        dsy <- diff(sign(ys))
+        if (any(dsy < 0)) {
+          widx <- which(dsy < 0)
+          intvl <- trypnts[widx + c(0,1)]
+        }
+      }
+      rootval <- uniroot(f=f,interval=intvl,extendInt='yes',ap=nextp)$root
+    }
+    resu[sp$ix[lll]] <- rootval
+    # fix rang
+    if (!is.infinite(rootval)) { 
+      rang[1] <- rootval
+    }
+  }
+  resu
 }
 
 #for vim modeline: (do not edit)

@@ -48,19 +48,19 @@
 #' y <- ptruncnorm(seq(-5,5,length.out=101), a=-1, b=2)
 #' @export 
 ptruncnorm <- function(q, mean=0, sd=1, a=-Inf, b=Inf, lower.tail=TRUE, log.p=FALSE) {
-	phiq <- pnorm(pmin(pmax(q,a),b),mean=mean,sd=sd)
-	phia <- pnorm(a,mean=mean,sd=sd)
-	phib <- pnorm(b,mean=mean,sd=sd)
-	deno <- phib - phia
+  phiq <- pnorm(pmin(pmax(q,a),b),mean=mean,sd=sd)
+  phia <- pnorm(a,mean=mean,sd=sd)
+  phib <- pnorm(b,mean=mean,sd=sd)
+  deno <- phib - phia
 
-	if (lower.tail) {
-		ret <- (phiq - phia) / deno
-	} else {
-		ret <- (phib - phiq) / deno
-	}
+  if (lower.tail) {
+    ret <- (phiq - phia) / deno
+  } else {
+    ret <- (phib - phiq) / deno
+  }
 
-	if (log.p) { ret <- log(ret) }
-	ret
+  if (log.p) { ret <- log(ret) }
+  ret
 }
 
 #for vim modeline: (do not edit)

@@ -29,12 +29,12 @@ Vfuncs <- function(z,A,b,ccc) {
   Ac <- A %*% ccc
   bres <- b - Az
   brat <- bres
-	suppressWarnings({
-		brat[Ac!=0] <- brat[Ac!=0] / Ac[Ac!=0]
-		Vminus <- max(brat[Ac < 0])
-		Vplus  <- min(brat[Ac > 0])
-		Vzero  <- min(bres[Ac == 0])
-	})
+  suppressWarnings({
+    brat[Ac!=0] <- brat[Ac!=0] / Ac[Ac!=0]
+    Vminus <- max(brat[Ac < 0])
+    Vplus  <- min(brat[Ac > 0])
+    Vzero  <- min(bres[Ac == 0])
+  })
   list(Vminus=Vminus,Vplus=Vplus,Vzero=Vzero)
 }
 psetup <- function(y,A,b,eta,Sigma_eta) { 
@@ -48,11 +48,11 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
 #' @importFrom stats uniroot
 ## invert the ptn function to find y at a given pval.
 #qtn <- function(p,A,b,eta,mu,Sigma=NULL,
-								#Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
-								#intvl=c(-10,10),lower.tail=TRUE) {
-	#if (! lower.tail) { p <- 1 - p }
+                #Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
+                #intvl=c(-10,10),lower.tail=TRUE) {
+  #if (! lower.tail) { p <- 1 - p }
 
-	#f <- function(y) {
+  #f <- function(y) {
     ## rather than this, which is numerically instable
     ##ptn(y,A,b,eta=eta,mu=mu,Sigma=Sigma,etamu=etamu) - p
     ## this
@@ -61,14 +61,14 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
     ##(phis[1] - phis[2]) - p * (phis[3] - phis[2])
     #phis[1] + (p-1) * phis[2] - p * phis[3]
   #}
-	## oh, yeah this is a hack
-	#trypnts <- seq(from=min(intvl),to=max(intvl),length.out=101)
-	#ys <- sapply(trypnts,f)
-	#dsy <- diff(sign(ys))
-	#if (any(dsy < 0)) {
-		#widx <- which(dsy < 0)
-		#intvl <- trypnts[widx + c(0,1)]
-	#}
+  ## oh, yeah this is a hack
+  #trypnts <- seq(from=min(intvl),to=max(intvl),length.out=101)
+  #ys <- sapply(trypnts,f)
+  #dsy <- diff(sign(ys))
+  #if (any(dsy < 0)) {
+    #widx <- which(dsy < 0)
+    #intvl <- trypnts[widx + c(0,1)]
+  #}
   #uniroot(f=f,interval=intvl,extendInt='yes')$root
 #}
 

@@ -66,13 +66,13 @@
 #' @template ref-lee
 #' @export
 pconnorm <- function(y,A,b,eta,mu=NULL,Sigma=NULL,
-										 Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
-										 lower.tail=TRUE,log.p=FALSE) {
-	# this is just Lee et. al eqn (5.9)
+                     Sigma_eta=Sigma %*% eta,eta_mu=as.numeric(t(eta) %*% mu),
+                     lower.tail=TRUE,log.p=FALSE) {
+  # this is just Lee et. al eqn (5.9)
   stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-	# ptrunc is Lee et. al eqn (5.8)
+  # ptrunc is Lee et. al eqn (5.8)
   ptruncnorm(q=stp$etay,a=stp$Vminus,b=stp$Vplus,mean=eta_mu,sd=sqrt(stp$etaSeta),
-						 lower.tail=lower.tail,log.p=log.p)
+             lower.tail=lower.tail,log.p=log.p)
 }
 
 #for vim modeline: (do not edit)
