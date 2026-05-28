@@ -68,7 +68,9 @@ NULL
 #'
 #' @section \epsiwal{} Initial Version 0.2.0 (2026-06-??) :
 #' \itemize{
-#' \item adding estimation procedure from Reid, Taylor, Tibshirani.
+#' \item fix numerical stability issues in ptruncnorm and downstream utilities (CIs).
+#' \item add MLE estimator of Reid, Taylor, Tibshirani.
+#' \item add helper functions for the case of conditioning on the max of a vector.
 #' }
 #'
 #' @section \epsiwal{} Initial Version 0.1.0 (2019-06-28) :

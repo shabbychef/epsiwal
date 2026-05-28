@@ -45,6 +45,98 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
   Vfs <- Vfuncs(zzz,A,b,ccc)
   c(Vfs,list(etay=etay,etaSeta=etaSeta))
 }
+
+# returns log(pnorm(b) - pnorm(a))
+# assumes a <= b
+.log_pnorm_diff <- function(a, b) {
+  out <- rep(NA_real_, length(a))
+  
+  # Case 1: a == b
+  idx_eq <- (a == b)
+  out[idx_eq] <- -Inf
+  
+  # Case 2: a + b > 0
+  # This includes the case where both are positive (a > 0)
+  # and the across-zero case where b is further from zero.
+  # We use the survival function Q = 1 - Phi.
+  # Phi(b) - Phi(a) = Q(a) - Q(b)
+  idx_upper <- !idx_eq & (a + b > 0)
+  if (any(idx_upper)) {
+    lq1 <- pnorm(a[idx_upper], lower.tail=FALSE, log.p=TRUE)
+    lq2 <- pnorm(b[idx_upper], lower.tail=FALSE, log.p=TRUE)
+    # logspace_sub(lq1, lq2)
+    out[idx_upper] <- lq1 + log1p(-exp(lq2 - lq1))
+  }
+  
+  # Case 3: a + b <= 0
+  # This includes the case where both are negative (b < 0)
+  # and the across-zero case where a is further from zero.
+  # We use the CDF Phi.
+  # Phi(b) - Phi(a)
+  idx_lower <- !idx_eq & !idx_upper
+  if (any(idx_lower)) {
+    lp1 <- pnorm(a[idx_lower], lower.tail=TRUE, log.p=TRUE)
+    lp2 <- pnorm(b[idx_lower], lower.tail=TRUE, log.p=TRUE)
+    # logspace_sub(lp2, lp1)
+    out[idx_lower] <- lp2 + log1p(-exp(lp1 - lp2))
+  }
+  
+  out
+}
+
+# returns log(exp(a) + exp(b))
+.logspace_add <- function(a, b) {
+  pmax(a, b) + log1p(exp(-abs(a - b)))
+}
+
+# returns the Mill's ratio Q(x)/phi(x) stably using a continued fraction.
+# Note that this is only accurate for large x (e.g. x > 5).
+# For small x, more terms are needed, or one should use
+# exp(pnorm(x,lower.tail=FALSE,log.p=TRUE) - dnorm(x,log=TRUE))
+.mills_ratio <- function(x, n=20) {
+  if (is.infinite(x)) return(0)
+  res <- 0
+  for (i in n:1) {
+    res <- i / (x + res)
+  }
+  1 / (x + res)
+}
+
+# returns the "generalized inverse Mill's ratio" (phi(a) - phi(b)) / (Phi(b) - Phi(a))
+# which is the adjustment term for the mean of a doubly-truncated normal.
+.inv_mills_diff <- function(a, b) {
+  # if both are large positive, we use the Mill's ratio to avoid subtraction of small values
+  if (a > 10 && b > a) {
+    L <- -0.5 * (b^2 - a^2)
+    # inv_mills_diff = (phi(a) - phi(b)) / (Q(a) - Q(b)) 
+    #                = (1 - exp(L)) / (r(a) - exp(L) r(b))
+    eL <- exp(L)
+    ra <- .mills_ratio(a)
+    rb <- .mills_ratio(b)
+    num <- - expm1(L)
+    den <- ra - eL * rb
+    return(num / den)
+  }
+  # if both are large negative, exploit symmetry
+  if (b < -10 && a < b) {
+    return(-.inv_mills_diff(-b, -a))
+  }
+  
+  # default case using logs
+  log_den <- .log_pnorm_diff(a, b)
+  l_phi_a <- dnorm(a, log=TRUE)
+  l_phi_b <- dnorm(b, log=TRUE)
+  
+  if (l_phi_a > l_phi_b) {
+    log_num <- l_phi_a + log(-expm1(l_phi_b - l_phi_a))
+    return(exp(log_num - log_den))
+  } else if (l_phi_a < l_phi_b) {
+    log_num <- l_phi_b + log(-expm1(l_phi_a - l_phi_b))
+    return(-exp(log_num - log_den))
+  } 
+  return(0)
+}
+
 #' @importFrom stats uniroot
 ## invert the ptn function to find y at a given pval.
 #qtn <- function(p,A,b,eta,mu,Sigma=NULL,

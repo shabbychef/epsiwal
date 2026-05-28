@@ -1,4 +1,10 @@
 
+2026-06-?? Steven E. Pav <shabbychef@gmail.com>
+* 0.2.0 on CRAN
+* fix numerical stability issues in ptruncnorm and downstream utilities (CIs)
+* add MLE estimator of Reid, Taylor, Tibshirani.
+* add helper functions for the case of conditioning on the max of a vector.
+
 2019-06-28 Steven E. Pav <shabbychef@gmail.com>
 * 0.1.0 on CRAN
 

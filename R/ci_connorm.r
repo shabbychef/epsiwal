@@ -50,7 +50,8 @@
 #' CDF.
 #' @note 
 #' An error will be thrown if we do not observe \eqn{A y \le b}{A y <= b}.
-#' @seealso the CDF function, \code{pconnorm}.
+#' @seealso the CDF function, \code{\link{pconnorm}}, the MLE function, \code{\link{mle_connorm}},
+#' the special case code for conditioning on the max, \code{\link{ci_connorm_max}}
 #' @template etc
 #' @template ref-lee
 #' @importFrom stats uniroot
@@ -73,16 +74,68 @@ ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
                        level=0.05,Sigma_eta=Sigma %*% eta) {
 
   stp <- psetup(y=y,A=A,b=b,eta=eta,Sigma_eta=Sigma_eta)
-  stp$sigma <- sqrt(stp$etaSeta)
+  .ci_connorm_core(etay=stp$etay, sigma=sqrt(stp$etaSeta), 
+                   Vminus=stp$Vminus, Vplus=stp$Vplus, 
+                   p=p, level=level)
+}
+
+#' @title ci_connorm_max .
+#'
+#' @description 
+#'
+#' Confidence intervals on normal mean, conditioning on the max.
+#'
+#' @details
+#'
+#' Computes the confidence interval of unknown mean of a normal vector
+#' conditional on the one element being the maximum.
+#'
+#' Let \eqn{y} be multivariate normal with unknown mean \eqn{\mu}
+#' and known covariance \eqn{\Sigma}. We assume that \eqn{\Sigma}
+#' is compound symmetric with common variance \eqn{\sigma^2} and 
+#' common correlation \eqn{\rho}. 
+#'
+#' Conditional on \eqn{y_k \ge y_i}{y_k >= y_i} for all \eqn{i},
+#' we compute the confidence interval of \eqn{\mu_k}.
+#'
+#' @param yk the observed maximum value, \eqn{y_k}.
+#' @param yk1 a vector of the other observed values, \eqn{y_{k1}}, or just the
+#' scalar second largest value.
+#' @param sigma the common standard deviation.
+#' @param rho the common correlation.
+#' @inheritParams ci_connorm
+#' @return The values of \eqn{\mu_k} which have the corresponding
+#' CDF.
+#' @seealso the CDF function, \code{\link{pconnorm}}, the MLE function, \code{\link{mle_connorm_max}},
+#' the more general version, \code{\link{ci_connorm}}.
+#' @template etc
+#' @template ref-lee
+#' @importFrom stats uniroot
+#' @export
+ci_connorm_max <- function(yk, yk1, sigma=1.0, rho=0, p=c(level/2,1-(level/2)),
+                           level=0.05) {
+  Vminus <- (max(yk1) - rho * yk) / (1 - rho)
+  Vplus <- Inf
+  .ci_connorm_core(etay=yk, sigma=sigma, 
+                   Vminus=Vminus, Vplus=Vplus, 
+                   p=p, level=level)
+}
+
+# does the work of the CI functions
+.ci_connorm_core <- function(etay, sigma, Vminus, Vplus, p=c(level/2,1-(level/2)),
+                             level=0.05) {
+
   # as a hack, a sane range of eta'mu is eta'y +/- 5 sigma
-  rang <- stp$etay + 5 * c(-1,1) * stp$sigma
+  rang <- etay + 5 * c(-1,1) * sigma
 
   # you want this, but there are numerical issues: 
   #f <- function(etamu,ap) { F_fnc(x=etay,a=Vfs$Vminus,b=Vfs$Vplus,mu=etamu,sigmasq=etaSeta) - ap } 
   f <- function(etamu,ap) { 
-    phis <- pnorm(c(stp$etay,stp$Vminus,stp$Vplus),mean=etamu,sd=stp$sigma)
-    #(phis[1] - phis[2]) - p * (phis[3] - phis[2])
-    phis[1] + (ap-1) * phis[2] - ap * phis[3]
+    if (ap < 0.5) {
+      ptruncnorm(q=etay,mean=etamu,sd=sigma,a=Vminus,b=Vplus,log.p=TRUE) - log(ap)
+    } else {
+      - (ptruncnorm(q=etay,mean=etamu,sd=sigma,a=Vminus,b=Vplus,lower.tail=FALSE,log.p=TRUE) - log1p(-ap))
+    }
   }
 
   sp <- sort.int(p,index.return=TRUE)

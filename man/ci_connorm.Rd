@@ -78,7 +78,8 @@ with application to the Lasso." Ann. Statist. 44, no. 3 (2016): 907-927.
 doi:10.1214/15-AOS1371. \url{https://arxiv.org/abs/1311.6238}
 }
 \seealso{
-the CDF function, \code{pconnorm}.
+the CDF function, \code{\link{pconnorm}}, the MLE function, \code{\link{mle_connorm}},
+the special case code for conditioning on the max, \code{\link{ci_connorm_max}}
 }
 \author{
 Steven E. Pav \email{shabbychef@gmail.com}
