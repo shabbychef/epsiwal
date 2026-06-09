@@ -47,7 +47,7 @@ Lee, Sun, Sun and Taylor, "Exact Post Selection Inference, with Application to t
 ## Installation
 
 This package may be installed from CRAN; the latest version may be
-found on [github](https://www.github.com/shabbychef/epsiwal "epsiwal")
+found on [github](https://github.com/shabbychef/epsiwal "epsiwal")
 via devtools, or installed via [drat](https://github.com/eddelbuettel/drat "drat"):
 
 ```{r install,eval=FALSE,echo=TRUE}
