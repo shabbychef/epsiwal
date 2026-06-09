@@ -34,10 +34,10 @@ opts_chunk$set(tidy=TRUE,tidy.opts=list(width.cutoff=50,keep.blank.line=TRUE))
 # epsiwal
 
 [![Build Status](https://github.com/shabbychef/epsiwal/workflows/R-CMD-check/badge.svg)](https://github.com/shabbychef/epsiwal/actions)
-[![codecov.io](http://codecov.io/github/shabbychef/epsiwal/coverage.svg?branch=master)](http://codecov.io/github/shabbychef/epsiwal?branch=master)
-[![CRAN](http://www.r-pkg.org/badges/version/epsiwal)](https://cran.r-project.org/package=epsiwal)
-[![Downloads](http://cranlogs.r-pkg.org/badges/epsiwal?color=green)](http://www.r-pkg.org/pkg/epsiwal)
-[![Total](http://cranlogs.r-pkg.org/badges/grand-total/epsiwal?color=green)](http://www.r-pkg.org/pkg/epsiwal)
+[![codecov.io](https://codecov.io/github/shabbychef/epsiwal/graph/badge.svg?token=aUUQLyasWG)](https://app.codecov.io/github/shabbychef/epsiwal)
+[![CRAN](https://www.r-pkg.org/badges/version/epsiwal)](https://cran.r-project.org/package=epsiwal)
+[![Downloads](https://cranlogs.r-pkg.org/badges/epsiwal)](https://r-pkg.org/pkg/epsiwal)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/epsiwal?color=brightgreen)](https://r-pkg.org/pkg/epsiwal)
 
 Implements conditional inference on normal variates as described in 
 Lee, Sun, Sun and Taylor, "Exact Post Selection Inference, with Application to the Lasso."
@@ -191,6 +191,6 @@ cat('MLE for mu_k:', mle, '\n')
 	constraints, as detailed in Tibshirani, R. J., Taylor, J., Lockhart, R. and Tibshirani, R. 
 	[Exact Post-Selection Inference for Sequential Regression Procedures](https://arxiv.org/abs/1401.3889).
 * Two papers I wrote which needed all this functionality:
-	* Pav, S. E. [Conditional inference on the asset with maximum Sharpe ratio](http://arxiv.org/abs/1906.00573).
+	* Pav, S. E. [Conditional inference on the asset with maximum Sharpe ratio](https://arxiv.org/abs/1906.00573).
 	* Pav, S. E. [Post selection estimation of Sharpe ratios](https://arxiv.org/abs/2606.01650).
 
