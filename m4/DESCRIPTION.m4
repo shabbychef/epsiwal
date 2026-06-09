@@ -17,6 +17,8 @@ Description: Implements the conditional estimation procedure of
   Lee, Sun, Sun and Taylor (2016) <doi:10.1214/15-AOS1371>.
   This procedure allows hypothesis testing on the mean of
   a normal random vector subject to linear constraints.
+  Also supports computation of the MLE of the mean subject to the
+  same constraints.
 Depends: 
     R (>= 3.0.2)
 dnl Imports: 

@@ -190,4 +190,7 @@ cat('MLE for mu_k:', mle, '\n')
 	which implements similar inferential procedures under quadratic
 	constraints, as detailed in Tibshirani, R. J., Taylor, J., Lockhart, R. and Tibshirani, R. 
 	[Exact Post-Selection Inference for Sequential Regression Procedures](https://arxiv.org/abs/1401.3889).
+* Two papers I wrote which needed all this functionality:
+	* Pav, S. E. [Conditional inference on the asset with maximum Sharpe ratio](http://arxiv.org/abs/1906.00573).
+	* Pav, S. E. [Post selection estimation of Sharpe ratios](https://arxiv.org/abs/2606.01650).
 
