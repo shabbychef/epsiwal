@@ -42,7 +42,7 @@ conditional on the one element being the maximum.
 
 Let \eqn{y} be multivariate normal with unknown mean \eqn{\mu}
 and known covariance \eqn{\Sigma}. We assume that \eqn{\Sigma}
-is equicorrelated with common variance \eqn{\sigma^2} and 
+is compound symmetric with common variance \eqn{\sigma^2} and 
 common correlation \eqn{\rho}. 
 
 Conditional on \eqn{y_k \ge y_i}{y_k >= y_i} for all \eqn{i},

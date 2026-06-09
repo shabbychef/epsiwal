@@ -20,6 +20,8 @@ and covariance \eqn{\Sigma}.}
 Not needed if \code{Sigma_eta} is given.}
 
 \item{Sigma_eta}{an \eqn{n} vector of \eqn{\Sigma \eta}.}
+
+\item{...}{dots are passed to \code{uniroot}.}
 }
 \value{
 The maximum likelihood estimate of \eqn{\eta^{\top}\mu}.
@@ -34,7 +36,7 @@ conditional on linear constraints.
 Let \eqn{y} be multivariate normal with unknown mean \eqn{\mu}
 and known covariance \eqn{\Sigma}. Conditional on \eqn{Ay \le b}{Ay <= b}
 for conformable matrix \eqn{A} and vector \eqn{b}, and given
-constrast vector \eqn{eta} and level \eqn{p}, we compute
+constrast vector \eqn{eta}, we compute
 the maximum likelihood estimate of \eqn{\eta^{\top}\mu}.
 }
 \examples{
@@ -48,6 +50,8 @@ mu <- rnorm(n)
 eta <- rnorm(n)
 
 mval <- mle_connorm(y=y,A=A,b=b,eta=eta,Sigma=Sigma)
+# try again, but control tolerance:
+mval <- mle_connorm(y=y,A=A,b=b,eta=eta,Sigma=Sigma,tol=1e-8)
 
 }
 \references{

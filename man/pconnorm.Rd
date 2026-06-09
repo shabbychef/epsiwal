@@ -37,8 +37,9 @@ Not needed if \code{Sigma_eta} is given.}
 
 \item{eta_mu}{the scalar \eqn{\eta^{\top}\mu}.}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are
-    \eqn{P[X \le x]} otherwise, \eqn{P[X > x]}.}
+\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x] otherwise, P[X > x].}
+
+\item{log.p}{logical; if TRUE, probabilities p are returned as log(p).}
 }
 \value{
 The CDF.

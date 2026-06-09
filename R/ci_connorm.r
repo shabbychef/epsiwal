@@ -114,10 +114,9 @@ ci_connorm <- function(y,A,b,eta,Sigma=NULL,p=c(level/2,1-(level/2)),
 #' @export
 ci_connorm_max <- function(yk, yk1, sigma=1.0, rho=0, p=c(level/2,1-(level/2)),
                            level=0.05) {
-  Vminus <- (max(yk1) - rho * yk) / (1 - rho)
-  Vplus <- Inf
+  stp <- psetup_max(yk=yk,yk1=yk1,sigma=sigma,rho=rho)
   .ci_connorm_core(etay=yk, sigma=sigma, 
-                   Vminus=Vminus, Vplus=Vplus, 
+                   Vminus=stp$Vminus, Vplus=stp$Vplus, 
                    p=p, level=level)
 }
 

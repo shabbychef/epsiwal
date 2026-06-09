@@ -67,5 +67,39 @@ test_that("runs without error",{#FOLDUP
 	expect_lt(pval_lo,pval_hi)
 })#UNFOLD
 
+test_that("pconnorm_max matches pconnorm", {#FOLDUP
+  skip_on_cran()
+
+  set.seed(1234)
+  n <- 5
+  sigma <- 1.5
+  rho <- 0.3
+  mu_k <- 1.0
+  
+  # Equicorrelation matrix
+  Sigma <- sigma^2 * ((1 - rho) * diag(n) + rho * matrix(1, n, n))
+  
+  y <- rnorm(n, mean = 2, sd = sigma) 
+  k <- which.max(y)
+  yk <- y[k]
+  yk1 <- y[-k]
+  
+  # Setup for pconnorm
+  A <- matrix(0, nrow = n - 1, ncol = n)
+  j_idx <- (1:n)[-k]
+  for (i in seq_along(j_idx)) {
+    A[i, j_idx[i]] <- 1
+    A[i, k] <- -1
+  }
+  b <- rep(0, n - 1)
+  eta <- rep(0, n)
+  eta[k] <- 1
+  
+  pval_gen <- pconnorm(y = y, A = A, b = b, eta = eta, Sigma = Sigma, eta_mu = mu_k)
+  pval_max <- pconnorm_max(yk = yk, yk1 = yk1, mu_k = mu_k, sigma = sigma, rho = rho)
+  
+  expect_equal(pval_gen, pval_max, tolerance = 1e-10)
+})#UNFOLD
+
 #for vim modeline: (do not edit)
 # vim:fdm=marker:fmr=FOLDUP,UNFOLD:cms=#%s:syn=r:ft=r

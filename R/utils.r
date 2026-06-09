@@ -45,6 +45,12 @@ psetup <- function(y,A,b,eta,Sigma_eta) {
   Vfs <- Vfuncs(zzz,A,b,ccc)
   c(Vfs,list(etay=etay,etaSeta=etaSeta))
 }
+# assumes we are testing yk is the maximum against yk1
+# and Sigma is compound symmetric with variance sigma^2
+# and common equicorrelation of rho.
+psetup_max <- function(yk,yk1,sigma,rho) {
+	list(Vminus=(max(yk1) - rho * yk) / (1 - rho),Vplus=Inf,Vzero=Inf,etay=yk,etaSeta=sigma**2)
+}
 
 # returns log(pnorm(b) - pnorm(a))
 # assumes a <= b

@@ -29,8 +29,11 @@
 #'
 #' Cumulative distribution of the truncated normal function.
 #'
+#' @param q  vector of quantiles,
 #' @param a  vector of the left truncation value(s).
 #' @param b  vector of the right truncation value(s).
+#' @param lower.tail  logical; if TRUE (default), probabilities are P[X <= x] otherwise, P[X > x].
+#' @param log.p logical; if TRUE, probabilities p are returned as log(p).
 #' @inheritParams stats::pnorm
 #' @return The distribution function of the truncated normal.
 #'

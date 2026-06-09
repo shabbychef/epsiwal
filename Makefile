@@ -8,10 +8,10 @@
 ############### FLAGS ###############
 
 VMAJOR 						 = 0
-VMINOR 						 = 1
+VMINOR 						 = 2
 VPATCH  					 = 0
-#VDEV 							 =
-VDEV 							 = .1001
+VDEV 							 =
+#VDEV 							 = .1001
 PKG_NAME 					:= epsiwal
 
 RPKG_USES_RCPP 		:= 0

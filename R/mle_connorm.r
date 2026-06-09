@@ -111,11 +111,10 @@ mle_connorm_max <- function(yk, yk1, sigma=1.0, rho=0, ...) {
   # (Az)_i = yi - rho * yk
   # b = 0
   # theta >= (b - Az) / Ac = (0 - (yi - rho * yk)) / (rho - 1) = (yi - rho * yk) / (1 - rho)
-  Vminus <- (max(yk1) - rho * yk) / (1 - rho)
-  Vplus <- Inf
+  stp <- psetup_max(yk=yk,yk1=yk1,sigma=sigma,rho=rho)
   
   .mle_connorm_core(etay=yk, sigma=sigma, 
-										Vminus=Vminus, Vplus=Vplus, ...)
+										Vminus=stp$Vminus, Vplus=stp$Vplus, ...)
 }
 
 .mle_connorm_core <- function(etay, sigma, Vminus, Vplus, ...) {

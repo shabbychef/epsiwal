@@ -1,5 +1,5 @@
 
-2026-06-?? Steven E. Pav <shabbychef@gmail.com>
+2026-06-08 Steven E. Pav <shabbychef@gmail.com>
 * 0.2.0 on CRAN
 * fix numerical stability issues in ptruncnorm and downstream utilities (CIs)
 * add MLE estimator of Reid, Taylor, Tibshirani.

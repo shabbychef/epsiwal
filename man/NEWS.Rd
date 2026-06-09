@@ -9,7 +9,7 @@ News for package \sQuote{epsiwal}
 \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 \newcommand{\epsiwal}{\CRANpkg{epsiwal}}
 }
-\section{\epsiwal{} Initial Version 0.2.0 (2026-06-??) }{
+\section{\epsiwal{} Initial Version 0.2.0 (2026-06-08) }{
 
 \itemize{
 \item fix numerical stability issues in ptruncnorm and downstream utilities (CIs).

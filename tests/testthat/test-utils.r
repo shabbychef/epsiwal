@@ -160,5 +160,46 @@ test_that("psetup works", {
   expect_true(stp$Vminus <= stp$Vplus)
 })
 
+test_that("psetup and psetup_max are equivalent", {
+  skip_on_cran()
+
+  set.seed(1234)
+  n <- 5
+  sigma <- 1.5
+  rho <- 0.3
+  
+  # Equicorrelation matrix
+  Sigma <- sigma^2 * ((1 - rho) * diag(n) + rho * matrix(1, n, n))
+  
+  y <- rnorm(n, mean = 2, sd = sigma) 
+  k <- which.max(y)
+  yk <- y[k]
+  yk1 <- y[-k]
+  
+  # Setup for psetup
+  # A y <= b
+  # y_j - y_k <= 0  => (e_j - e_k) y <= 0
+  A <- matrix(0, nrow = n - 1, ncol = n)
+  j_idx <- (1:n)[-k]
+  for (i in seq_along(j_idx)) {
+    A[i, j_idx[i]] <- 1
+    A[i, k] <- -1
+  }
+  b <- rep(0, n - 1)
+  eta <- rep(0, n)
+  eta[k] <- 1
+  
+  Sigma_eta <- Sigma %*% eta
+  
+  stp1 <- psetup(y = y, A = A, b = b, eta = eta, Sigma_eta = Sigma_eta)
+  stp2 <- psetup_max(yk = yk, yk1 = yk1, sigma = sigma, rho = rho)
+  
+  expect_equal(stp1$Vminus, stp2$Vminus)
+  expect_equal(stp1$Vplus, stp2$Vplus)
+  expect_equal(stp1$Vzero, stp2$Vzero)
+  expect_equal(stp1$etay, stp2$etay)
+  expect_equal(stp1$etaSeta, stp2$etaSeta)
+})
+
 #for vim modeline: (do not edit)
 # vim:fdm=marker:fmr=FOLDUP,UNFOLD:cms=#%s:syn=r:ft=r

@@ -55,7 +55,7 @@
 #' 
 #' This package is maintained as a hobby. 
 #'
-NULL
+"_PACKAGE"
 
 #' @title News for package 'epsiwal':
 #'
@@ -66,7 +66,7 @@ NULL
 #' \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 #' \newcommand{\epsiwal}{\CRANpkg{epsiwal}}
 #'
-#' @section \epsiwal{} Initial Version 0.2.0 (2026-06-??) :
+#' @section \epsiwal{} Initial Version 0.2.0 (2026-06-08) :
 #' \itemize{
 #' \item fix numerical stability issues in ptruncnorm and downstream utilities (CIs).
 #' \item add MLE estimator of Reid, Taylor, Tibshirani.
